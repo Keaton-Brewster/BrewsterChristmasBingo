@@ -1,0 +1,50 @@
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  border: #000 solid 3px;
+  border-radius: 25px;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.preact:hover {
+  filter: drop-shadow(0 0 2em #673ab8aa);
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+button {
+  background-color: #fff;
+  border: #800 solid 2px;
+  transition: ease 0.5s;
+  color: black;
+}
+
+button:hover {
+  border: #0b0 solid 2px !important;
+  background-color: #060;
+}
+
+button:active {
+  border: #0b0 solid 2px !important;
+  background-color: #060;
+}
+
+button:focus {
+  border: #0b0 solid 2px !important;
+  background-color: #060;
+}

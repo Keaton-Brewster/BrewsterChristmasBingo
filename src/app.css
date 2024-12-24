@@ -48,3 +48,23 @@ button:focus {
   border: #0b0 solid 2px !important;
   background-color: #060;
 }
+
+.card-tile {
+  font-size: 12px;
+  padding: 25px 2px;
+  min-width: 50px;
+}
+
+#new-card-button {
+  margin: 35px;
+}
+
+@media screen and (max-width: 475px) {
+  .card-tile {
+    transform: scale(0.9);
+  }
+
+  #app {
+    width: 300px !important;
+  }
+}

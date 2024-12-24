@@ -51,9 +51,10 @@ export default function Card(props: { style?: CSSProperties }): JSX.Element {
     };
 
     return (
-        <div style={style} className="max-w-md mx-auto p-4">
+        <div id="card" style={style} className="max-w-md mx-auto p-4">
             <div className="text-center mb-4">
                 <button
+                    id="new-card-button"
                     onClick={newCard}
                     className="bg-green-600 text-white px-4 py-2 rounded-md mb-4"
                 >
@@ -68,10 +69,6 @@ export default function Card(props: { style?: CSSProperties }): JSX.Element {
                     display: "grid",
                     gridTemplateRows: "repeat(5, 1fr)",
                     gridTemplateColumns: "repeat(5, 1fr)",
-                    width: "100%", // Adjust this based on your design
-                    height: "320px", // Ensures square grid
-                    alignContent: "start",
-                    justifyContent: "start"
                 }}
             >
                 {cardItems.map((item, index) => (
@@ -87,6 +84,7 @@ export default function Card(props: { style?: CSSProperties }): JSX.Element {
                         <span className="text-2xl" role="img" aria-label={item.description}>
                             {item.icon}
                         </span>
+                        <br />
                         <span className="text-xs mt-1 text-center leading-tight">
                             {item.description}
                         </span>

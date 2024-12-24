@@ -13,72 +13,85 @@ export function App() {
 
   const cardStyle: CSSProperties = {
     display: cardVisible ? "block" : "none",
-    gridColumn: "span 5"  // Make card span all columns
+    width: '100%'
   }
 
   const cageStyle: CSSProperties = {
     display: cageVisible ? "block" : "none",
-    gridColumn: "span 5"  // Make generator span all columns
+    width: '100%'
   }
 
   const backButtonStyle: CSSProperties = {
-    display: backVisible ? "block" : "none",
-    gridColumn: "1",  // Place back button in first column
-    gridRow: "1"      // Place in first row
+    display: backVisible ? "block" : "none"
   }
 
   const optionButtonsStyle: CSSProperties = {
-    display: optionButtonsVisible ? "flex" : "none",
-    margin: "1em",
-    padding: "1em",
-    justifyContent: "center",
-    gridColumn: "span 2"  // Each button spans 2 columns
+    display: optionButtonsVisible ? "block" : "none",
+    width: '100%'
   }
 
-  const containerStyle: CSSProperties = {
-    display: "grid",
-    gridTemplateColumns: "repeat(5, 1fr)",  // 5 equal columns
-    gap: "1rem",                            // Space between grid items
-    width: "100%",
-    maxWidth: "1200px",
-    margin: "0 auto",
-    padding: "1rem"
+  const resetView = (e: Event) => {
+    e.preventDefault()
+    setCageVisible(false)
+    setCardVisible(false)
+    setOptionButtonsVisible(true)
+    setBackVisible(false)
   }
 
-  const headerStyle: CSSProperties = {
-    gridColumn: "span 5",  // Make header span all columns
-    textAlign: "center",
-    margin: "1em 0",
-    fontSize: "34px"
+  const showCard = (e: Event) => {
+    e.preventDefault()
+    setCardVisible(true)
+    setOptionButtonsVisible(false)
+    setBackVisible(true)
+  }
+
+  const showCage = (e: Event) => {
+    e.preventDefault()
+    setCageVisible(true)
+    setOptionButtonsVisible(false)
+    setBackVisible(true)
   }
 
   return (
-    <div style={containerStyle}>
-      <h2 style={headerStyle}>Brewster Family Christmas Bingo</h2>
-      <Button style={backButtonStyle} text='Back' handler={(e) => {
-        e.preventDefault()
-        setCageVisible(false)
-        setCardVisible(false)
-        setOptionButtonsVisible(true)
-        setBackVisible(false)
-      }} />
-      <div style={{ gridColumn: "2 / span 3", display: "flex", gap: "1rem", justifyContent: "center" }}>
-        <Button style={optionButtonsStyle} text='Bingo Card' handler={(e) => {
-          e.preventDefault()
-          setCardVisible(true)
-          setOptionButtonsVisible(false)
-          setBackVisible(true)
-        }} />
-        <Button style={optionButtonsStyle} text='Bingo Cage' handler={(e) => {
-          e.preventDefault()
-          setCageVisible(true)
-          setOptionButtonsVisible(false)
-          setBackVisible(true)
-        }} />
-      </div>
-      <div style={{ gridColumn: "2 / span 3", display: "flex", gap: "1rem", justifyContent: "center" }}>
-        <Cage style={cageStyle} />
-        <Card style={cardStyle} />
+    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+      <div className="flex flex-col items-center gap-4 sm:gap-6">
+        {/* Header */}
+        <h2 className="text-2xl sm:text-3xl md:text-4xl text-center font-bold">
+          Brewster Family Christmas Bingo
+        </h2>
+
+        {/* Back Button */}
+        {backVisible && (
+          <div className="w-full sm:w-auto">
+            <Button
+              style={backButtonStyle}
+              text='Back'
+              handler={resetView}
+            />
+          </div>
+        )}
+
+        {/* Option Buttons */}
+        {optionButtonsVisible && (
+          <div className="w-full flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              style={optionButtonsStyle}
+              text='Bingo Card'
+              handler={showCard}
+            />
+            <Button
+              style={optionButtonsStyle}
+              text='Bingo Cage'
+              handler={showCage}
+            />
+          </div>
+        )}
+
+        {/* Game Components */}
+        <div className="w-full">
+          {cardVisible && <Card style={cardStyle} />}
+          {cageVisible && <Cage style={cageStyle} />}
+        </div>
       </div>
     </div>
   )

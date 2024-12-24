@@ -22,17 +22,15 @@ export default function Cage(props: { style?: CSSProperties }): JSX.Element {
 
         let intervalId: number;
         const shuffledBalls = arrayShuffle([...remainingBalls]);
-        const cycleDuration = 2000; // Slot machine effect duration (in ms)
-        const cycleInterval = 100; // Interval between cycles
+        const cycleDuration = 2000;
+        const cycleInterval = 100;
 
-        // Start cycling through items
         let cycleIndex = 0;
         intervalId = setInterval(() => {
             setTempBall(shuffledBalls[cycleIndex % shuffledBalls.length]);
             cycleIndex++;
         }, cycleInterval);
 
-        // Stop cycling and pick the next ball
         setTimeout(() => {
             clearInterval(intervalId);
             const drawn = shuffledBalls[0];
@@ -55,18 +53,18 @@ export default function Cage(props: { style?: CSSProperties }): JSX.Element {
     };
 
     return (
-        <div style={style ?? undefined} className="flex flex-col items-center gap-4 p-4">
-            <div className="text-center mb-4">
-                <p className="text-gray-600">
+        <div style={style ?? undefined} className="flex flex-col items-center gap-2 sm:gap-4 p-2 sm:p-4 w-full max-w-lg mx-auto">
+            <div className="text-center mb-2 sm:mb-4">
+                <p className="text-gray-600 text-sm sm:text-base">
                     Remaining Balls: {remainingBalls.length} / {initialBalls.length}
                 </p>
             </div>
 
-            <div className="text-center mb-4">
+            <div className="text-center mb-2 sm:mb-4 w-full">
                 {isCycling && tempBall ? (
                     <div
-                        style={{ fontSize: "150px" }}
-                        className="text-7xl mb-2 animate-spin"
+                        style={{ fontSize: "clamp(80px, 15vw, 150px)" }}
+                        className="animate-spin mb-2"
                         role="img"
                         aria-label={tempBall.description}
                     >
@@ -74,45 +72,42 @@ export default function Cage(props: { style?: CSSProperties }): JSX.Element {
                     </div>
                 ) : currentBall ? (
                     <div
-                        style={{ fontSize: "150px" }}
-                        className="text-7xl mb-2"
+                        style={{ fontSize: "clamp(80px, 15vw, 150px)" }}
+                        className="mb-2"
                         role="img"
                         aria-label={currentBall.description}
                     >
                         {currentBall.icon}
                     </div>
                 ) : (
-                    <p className="text-gray-400">Click "Draw Ball" to start!</p>
+                    <p className="text-gray-400 text-sm sm:text-base">Click "Draw Ball" to start!</p>
                 )}
-                {currentBall && <p className="text-xl">{currentBall.description}</p>}
+                {currentBall && <p className="text-base sm:text-xl break-words">{currentBall.description}</p>}
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
                 <button
                     onClick={drawBall}
                     disabled={remainingBalls.length === 0 || isCycling}
-                    className="px-4 py-2 bg-green-600 text-white rounded-md disabled:bg-gray-400"
+                    className="w-full sm:w-auto px-4 py-2 bg-green-600 text-white rounded-md disabled:bg-gray-400 text-sm sm:text-base"
                 >
                     Draw Ball
                 </button>
-            </div>
-            <div className="flex gap-4">
                 <button
                     onClick={resetGame}
-                    className="px-4 py-2 bg-green-600 text-white rounded-md disabled:bg-gray-400"
+                    className="w-full sm:w-auto px-4 py-2 bg-green-600 text-white rounded-md disabled:bg-gray-400 text-sm sm:text-base"
                 >
                     Reset Game
                 </button>
             </div>
 
-            <div className="mt-4">
-                <h3 className="text-xl font-bold mb-2">Drawn Balls:</h3>
+            <div className="mt-2 sm:mt-4 w-full">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 text-center">Drawn Balls:</h3>
                 <div className="flex flex-wrap gap-2 justify-center">
                     {drawnBalls.map((ball, index) => (
                         <span
-                            style={{ fontSize: "45px" }}
+                            style={{ fontSize: "clamp(30px, 8vw, 45px)" }}
                             key={index}
-                            className="text-2xl"
                             role="img"
                             aria-label={ball.description}
                         >

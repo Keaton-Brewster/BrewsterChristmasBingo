@@ -87,6 +87,19 @@ export default function Card(props: { style?: CSSProperties }): JSX.Element {
                     New Card
                 </button>
             </div>
+            {checkWin() && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div className="bg-white p-8 rounded-lg text-center">
+                        <h3 className="text-3xl font-bold mb-4">BINGO! 🎉</h3>
+                        <button
+                            onClick={newCard}
+                            className="bg-green-600 text-white px-4 py-2 rounded-md"
+                        >
+                            Play Again
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {/* Grid for Bingo Card */}
             <div
@@ -119,19 +132,7 @@ export default function Card(props: { style?: CSSProperties }): JSX.Element {
             </div>
 
 
-            {checkWin() && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="bg-white p-8 rounded-lg text-center">
-                        <h3 className="text-3xl font-bold mb-4">BINGO! 🎉</h3>
-                        <button
-                            onClick={newCard}
-                            className="bg-green-600 text-white px-4 py-2 rounded-md"
-                        >
-                            Play Again
-                        </button>
-                    </div>
-                </div>
-            )}
+
         </div>
     );
 }

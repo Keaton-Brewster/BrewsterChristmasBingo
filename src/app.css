@@ -72,3 +72,12 @@ button:focus {
     width: 300px !important;
   }
 }
+
+.control-button {
+  max-width: 120px;
+}
+
+.controls-container {
+  display: flex;
+  justify-content: center;
+}

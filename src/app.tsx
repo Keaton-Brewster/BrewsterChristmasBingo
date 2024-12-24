@@ -73,16 +73,18 @@ export function App() {
 
         {/* Option Buttons */}
         {optionButtonsVisible && (
-          <div className="w-full flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="controls-container w-full flex flex-col gap-4 justify-center">
             <Button
               style={optionButtonsStyle}
               text='Bingo Card'
               handler={showCard}
+              className='control-button'
             />
             <Button
               style={optionButtonsStyle}
               text='Bingo Cage'
               handler={showCage}
+              className='control-button'
             />
           </div>
         )}

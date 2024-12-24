@@ -1,9 +1,11 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import bingoItems from "../utils/bingoItems";
 import { CSSProperties, JSX } from "preact/compat";
+import confetti from 'canvas-confetti'
 
 export default function Card(props: { style?: CSSProperties }): JSX.Element {
     const { style } = props;
+    const [hasWon, setHasWon] = useState(false)
 
     // Generate random card layout
     const generateCardItems = () => {
@@ -34,7 +36,7 @@ export default function Card(props: { style?: CSSProperties }): JSX.Element {
         setSelectedItems(new Set());
     };
 
-    const checkWin = () => {
+    const checkWin = (): boolean => {
         // Win patterns: rows, columns, diagonals
         const patterns = [
             // Rows
@@ -45,10 +47,34 @@ export default function Card(props: { style?: CSSProperties }): JSX.Element {
             [0, 6, 12, 18, 24], [4, 8, 12, 16, 20]
         ];
 
-        return patterns.some(pattern =>
+        const win = patterns.some(pattern =>
             pattern.every(index => selectedItems.has(index) || cardItems[index].isFree)
         );
+
+        if (win && !hasWon) {
+            setHasWon(true);
+        } else if (!win) {
+            setHasWon(false)
+        }
+
+        return win
     };
+
+    useEffect(() => {
+        if (hasWon) {
+            confetti({
+                particleCount: 500,
+                spread: 180,
+                origin: { x: 0.5, y: 1 },
+            });
+            confetti({
+                particleCount: 500,
+                spread: 180,
+                angle: -45,
+                origin: { x: 0.5, y: -.25 },
+            });
+        }
+    }, [hasWon]);
 
     return (
         <div id="card" style={style} className="max-w-md mx-auto p-4">

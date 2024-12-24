@@ -81,7 +81,7 @@ export default function Card(props: { style?: CSSProperties }): JSX.Element {
                             maxWidth: "20vw"
                         }}
                     >
-                        <span className="text-2xl" role="img" aria-label={item.description}>
+                        <span className="bingo-icon text-2xl" role="img" aria-label={item.description}>
                             {item.icon}
                         </span>
                         <br />

@@ -59,6 +59,10 @@ button:focus {
   margin: 35px;
 }
 
+.bingo-icon {
+  font-size: 3em;
+}
+
 @media screen and (max-width: 475px) {
   .card-tile {
     transform: scale(0.9);

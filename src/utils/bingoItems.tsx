@@ -16,7 +16,6 @@ const bingoItems: Array<bingoItem> = [
     { icon: '🧦', description: 'Stocking' },
     { icon: '🍪', description: 'Cookie' },
     { icon: '🥛', description: 'Milk' },
-    { icon: '🎅', description: 'Mrs. Claus' },
     { icon: '🏠', description: 'House' },
     { icon: '🛷', description: 'Sleigh' },
     { icon: '🎶', description: 'Music Notes' },
